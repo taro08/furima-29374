@@ -45,14 +45,15 @@ Things you may want to cover:
 
 ## product テーブル
 
-| Column                | Type    | Options      |
-| --------------------- | --------| ------------ |
-| product_name          | string  | null: false  |
-| product_description   | string  | null: false  |
-| category              | string  | null: false  |
-| price                 | integer | null: false  |
-| product_status        | string  | null: false  |
-| user_id               | integer | null: false  |
+| Column                | Type       | Options                        |
+| --------------------- | -----------| ------------------------------ |
+| product_name          | string     | null: false                    |
+| product_description   | text       | null: false                    |
+| category              | string     | null: false                    |
+| price                 | integer    | null: false                    |
+| product_status        | string     | null: false                    |
+| user_id               | integer    | null: false, foreign_key: true |
+| nickname              | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -61,13 +62,13 @@ Things you may want to cover:
 
 ## Purchase テーブル
 
-| Column                 | Type    | Options     |
-| ---------------------- | --------| ------------|
-| delivery_time          | string  | null: false |
-| consignor_area         | string  | null: false |
-| shipping_costs_burden  | string  | null: false |
-| user_id                | integer | null: false |
-| product_id             | integer | null: false |
+| Column                 | Type    | Options                        |
+| ---------------------- | --------| -------------------------------|
+| delivery_time          | string  | null: false                    |
+| consignor_area         | string  | null: false                    |
+| shipping_costs_burden  | string  | null: false                    |
+| user_id                | integer | null: false, foreign_key: true |
+| product_id             | integer | null: false, foreign_key: true |
 
 ### Association
 
@@ -77,15 +78,15 @@ Things you may want to cover:
 
 ## delivery テーブル
 
-| Column                 | Type    | Options     |
-| ---------------------- | ------- | ----------- |
-| postal_code            | integer | null: false |
-| prefecture             | string  | null: false |
-| city                   | string  | null: false |
-| house_number           | string  | null: false |
-| building               | string  | null: false |
-| phone_number           | integer | null: false |
-| purchase_id            | integer | null: false |
+| Column                 | Type    | Options                         |
+| ---------------------- | ------- | ------------------------------- |
+| postal_code            | integer | null: false                     |
+| prefecture             | string  | null: false                     |
+| city                   | string  | null: false                     |
+| house_number           | string  | null: false                     |
+| building               | string  | null: false                     |
+| phone_number           | integer | null: false                     |
+| purchase_id            | integer | null: false , foreign_key: true |
 
 ### Association
 
