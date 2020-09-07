@@ -45,14 +45,14 @@ Things you may want to cover:
 
 ## product テーブル
 
-| Column                | Type    | Options                        |
-| --------------------- | --------| ------------------------------ |
-| product_name          | string  | null: false                    |
-| product_description   | string  | null: false                    |
-| category              | string  | null: false                    |
-| price                 | integer | null: false                    |
-| product_status        | string  | null: false                    |
-| user_id               | integer | null: false                    |
+| Column                | Type    | Options      |
+| --------------------- | --------| ------------ |
+| product_name          | string  | null: false  |
+| product_description   | string  | null: false  |
+| category              | string  | null: false  |
+| price                 | integer | null: false  |
+| product_status        | string  | null: false  |
+| user_id               | integer | null: false  |
 
 ### Association
 
