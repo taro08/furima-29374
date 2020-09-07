@@ -48,15 +48,15 @@ Things you may want to cover:
 
 | Column                 | Type       | Options                        |
 | ---------------------- | -----------| ------------------------------ |
-| product_name           | string     | null: false                    |
-| product_description    | text       | null: false                    |
-| category               | string     | null: false                    |
+| name                   | string     | null: false                    |
+| description            | text       | null: false                    |
+| category               | integer    | null: false                    |
 | price                  | integer    | null: false                    |
-| product_status         | string     | null: false                    |
+| status                 | integer    | null: false                    |
 | user                   | references | null: false, foreign_key: true |
-| delivery_time          | string     | null: false                    |
-| consignor_area         | string     | null: false                    |
-| shipping_costs_burden  | string     | null: false                    |
+| delivery_time          | integer    | null: false                    |
+| consignor_area         | integer    | null: false                    |
+| shipping_costs_burden  | integer    | null: false                    |
 
 ### Association
 
@@ -81,10 +81,10 @@ Things you may want to cover:
 | Column                 | Type       | Options                         |
 | ---------------------- | ---------- | ------------------------------- |
 | postal_code            | string     | null: false                     |
-| prefecture             | string     | null: false                     |
+| prefecture             | integer    | null: false                     |
 | city                   | string     | null: false                     |
 | house_number           | string     | null: false                     |
-| building               | string     | 　　　　　　　                     |
+| building               | string     |                                 |
 | phone_number           | string     | null: false                     |
 | purchase               | references | null: false , foreign_key: true |
 
