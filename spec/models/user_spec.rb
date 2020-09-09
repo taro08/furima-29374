@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-    it "すべての値が存在すれば登録できること" do
+    it 'すべての値が存在すれば登録できること' do
       expect(@user).to be_valid
     end
     it 'nicknameが空だと保存できないこと' do
@@ -39,31 +39,31 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include("Birth day can't be blank")
     end
-    it "passwordが5文字以下であれば登録できないこと" do
-      @user.password = "000aa"
-      @user.encrypted_password = "000aa"
+    it 'passwordが5文字以下であれば登録できないこと' do
+      @user.password = '000aa'
+      @user.encrypted_password = '000aa'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
     it 'last_nameが全角日本語でないと保存できないこと' do
-      @user.last_name = "suzuki"
+      @user.last_name = 'suzuki'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name は全角で入力してください。")
+      expect(@user.errors.full_messages).to include('Last name は全角で入力してください。')
     end
     it 'first_nameが全角日本語でないと保存できないこと' do
-      @user.first_name = "taro"
+      @user.first_name = 'taro'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name は全角で入力してください。")
+      expect(@user.errors.full_messages).to include('First name は全角で入力してください。')
     end
     it 'last_name_readingがカタカナ日本語でないと保存できないこと' do
-      @user.last_name_reading = "taro"
+      @user.last_name_reading = 'taro'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name reading は全角カタカナで入力して下さい。")
+      expect(@user.errors.full_messages).to include('Last name reading は全角カタカナで入力して下さい。')
     end
     it 'first_name_readingがカタカナ日本語でないと保存できないこと' do
-      @user.first_name_reading = "taro"
+      @user.first_name_reading = 'taro'
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name reading は全角カタカナで入力して下さい。")
+      expect(@user.errors.full_messages).to include('First name reading は全角カタカナで入力して下さい。')
     end
   end
 end
