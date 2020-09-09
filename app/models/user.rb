@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum: 6}
   validates :encrypted_password, presence: true
   validates :birth_day, presence: true
-  
+
   with_options presence: true do
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: "は全角で入力してください。"}
     validates :last_name, format:  { with: /\A[ぁ-んァ-ン一-龥]/, message: "は全角で入力してください。"}
