@@ -65,5 +65,31 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include('First name reading は全角カタカナで入力して下さい。')
     end
+    it "重複したemailが存在する場合登録できないこと" do
+      @user.save
+      another_user = FactoryBot.build(:user, email: @user.email)
+      another_user.valid?
+     expect(another_user.errors.full_messages).to include("Email has already been taken")
+    end
+    it "パスワードは確認用を含めて2回入力する" do
+      @user.password_confirmation = ""
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+    end
+    it 'メールアドレスは@を含む必要がある' do
+      @user.email = 'suzukigmail.com'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Email ＠を使ってください。')
+    end
+    it 'パスワードは半角英数字混合である' do
+      @user.password = 'suzukisan'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+    end
+    it 'パスワードは半角英数字混合である2' do
+      @user.password = '11111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+    end
   end
 end
