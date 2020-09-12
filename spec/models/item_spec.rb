@@ -21,6 +21,9 @@ RSpec.describe Item, type: :model do
     end
     context '新規登録がうまく行かないとき' do
       it '画像は1枚必須であること' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が必須であること' do
         @item.name = nil
