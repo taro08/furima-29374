@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
   end
 
   def not_login_user
-    unless user_sing_in?
+    unless user_signed_in?
       redirect_to items_path
     end
   end
