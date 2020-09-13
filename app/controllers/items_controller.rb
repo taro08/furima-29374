@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :not_login_user, only:[:new,:create]
   def index
     @items = Item.all
   end
@@ -20,5 +21,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:image, :name, :description, :category, :price, :status, :delivery_time, :consignor_area, :shipping_costs_burden).merge(user_id: current_user.id)
+  end
+
+  def not_login_user
+    unless user_sing_in?
+      redirect_to items_path
+    end
   end
 end
