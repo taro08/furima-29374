@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :not_login_user, only:[:new,:create]
   def index
-    @items = Item.all
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
