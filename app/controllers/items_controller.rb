@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :not_login_user, only:[:new,:create]
+  before_action :not_login_user, only: [:new, :create]
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -12,20 +12,22 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       redirect_to items_path
-    else 
+    else
       render :new
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:image, :name, :description, :category, :price, :status, :delivery_time, :consignor_area, :shipping_costs_burden).merge(user_id: current_user.id)
+    params.require(:item).permit(:image, :name, :description, :category_id, :price, :status_id, :delivery_time_id, :consignor_area_id, :shipping_costs_burden_id).merge(user_id: current_user.id)
   end
 
   def not_login_user
-    unless user_signed_in?
-      redirect_to items_path
-    end
+    redirect_to items_path unless user_signed_in?
   end
 end
