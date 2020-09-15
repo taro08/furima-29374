@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :not_login_user, only: [:new, :create]
+  before_action :set_item, only: [ :edit, :update, :show]
+
   def index
     @items = Item.all.order('created_at DESC')
   end
@@ -18,7 +20,18 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
+  end
+
+  def update
+    
+    if @item.update(item_params)
+      redirect_to items_path
+    else
+      render :edit
+    end
   end
 
   private
@@ -29,5 +42,9 @@ class ItemsController < ApplicationController
 
   def not_login_user
     redirect_to items_path unless user_signed_in?
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
