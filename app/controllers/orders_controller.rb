@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
+  before_action :not_login_user, only: [:index, :new, :create]
+
   def index
-    @order = Order.new
+    @order = OrderDelivery.new()
     @item = Item.find(params[:item_id])
   end
 
@@ -9,10 +11,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-
     @order = OrderDelivery.new(order_params)
     @item = Item.find(params[:item_id])
-    binding.pry
+
     if @order.valid?
       pay_item
       @order.save
@@ -34,6 +35,10 @@ class OrdersController < ApplicationController
       card: params[:token],
       currency:'jpy'
     )
-
   end
+    
+  def not_login_user
+    redirect_to items_path unless user_signed_in?
+  end
+
 end
