@@ -23,7 +23,7 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
       end
       it '県名が選択されていること' do
-        @order_delivery.prefecture_id = nil
+        @order_delivery.prefecture_id = 0
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -43,7 +43,7 @@ RSpec.describe OrderDelivery, type: :model do
         expect(@order_delivery.errors.full_messages).to include("Phone number can't be blank")
       end
       it '電話番号が11桁以内であること' do
-        @order_delivery.phone_number = nil
+        @order_delivery.phone_number = "111111111111"
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Phone number is invalid")
       end
