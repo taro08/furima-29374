@@ -3,10 +3,10 @@ class OrdersController < ApplicationController
   before_action :move_to_index, only: [:index]
   before_action :not_login_user, only: [:index, :new, :create]
   before_action :set_item, only: [:index, :new]
-
+  before_action :find_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
+
   end
 
   def new
@@ -14,7 +14,6 @@ class OrdersController < ApplicationController
 
   def create
     @order = OrderDelivery.new(order_params)
-    @item = Item.find(params[:item_id])
 
     if @order.valid?
       pay_item
@@ -54,5 +53,8 @@ class OrdersController < ApplicationController
     @order = OrderDelivery.new()
   end
 
+  def find_item
+    @item = Item.find(params[:item_id])
+  end
 end
 
