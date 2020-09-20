@@ -17,6 +17,11 @@ RSpec.describe OrderDelivery, type: :model do
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Postal code can't be blank")
       end
+      it '郵便番号の桁数が7桁位以内で有ること' do
+        @order_delivery.postal_code = "000-00000"
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
       it '郵便番号にハイフンが含まれていること' do
         @order_delivery.postal_code = "000000"
         @order_delivery.valid?
@@ -25,7 +30,7 @@ RSpec.describe OrderDelivery, type: :model do
       it '県名が選択されていること' do
         @order_delivery.prefecture_id = 0
         @order_delivery.valid?
-        expect(@order_delivery.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_delivery.errors.full_messages).to include("Prefecture can't be ---")
       end
       it '市区町村が記載されていること' do
         @order_delivery.city = nil
