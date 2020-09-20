@@ -9,6 +9,11 @@ RSpec.describe OrderDelivery, type: :model do
       it 'すべての値が正しく入力されていたら保存できること' do
         expect(@order_delivery).to be_valid
       end
+      it '建物名が空の時でも登録できること' do
+        @order_delivery.building = nil
+        expect(@order_delivery).to be_valid
+      end
+
     end
 
     context '登録がうまく行かないとき' do
@@ -51,6 +56,11 @@ RSpec.describe OrderDelivery, type: :model do
         @order_delivery.phone_number = "111111111111"
         @order_delivery.valid?
         expect(@order_delivery.errors.full_messages).to include("Phone number is invalid")
+      end
+      it 'クレジットカード情報の記載に不備に不備がないこと' do
+        @order_delivery.token = nil
+        @order_delivery.valid?
+        expect(@order_delivery.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
